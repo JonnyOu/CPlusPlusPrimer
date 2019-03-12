@@ -6,30 +6,18 @@
 #include <vector>
 using namespace std;
 
-int main(){
+class Test {
+    public:
+        string str;
+        Test(string s = ""): str(s) {}
+        Test(istream &is = cin) {is >> (this -> str);}
+};
 
-    unsigned bufsize;
-    unsigned ival = 512, jval = 1024, kval = 4096;
-    char swt;
-    cout << "input a number, val maybe 521, 1024 or 4096\n";
-    cin >> swt;
-    switch (swt) {
-        case 'i':
-            bufsize = ival * sizeof(int);
-           // cout << "ival" << endl;
-            break;
-        case 'j':
-            bufsize = jval * sizeof(int);
-           // cout << "jval" << endl;
-            break;
-        case 'k':
-            bufsize = kval * sizeof(int);
-           // cout << "kval" << endl;
-            break;
-        default:
-            cout << "others" << endl;
-            break;
-    }
-    cout << bufsize << endl;
+int main(){
+   
+    Test test(cin);
+    cout << (test.str) << endl; 
+
     return 0;
 } 
+

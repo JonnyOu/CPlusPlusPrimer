@@ -27,17 +27,27 @@ Sales_data add(const Sales_data &a, const Sales_data &b) {
     return c;
 }
 
-ostream &print(ostream &os, const Sales_data &sd) {
-    os << sd.isbn() << " " << sd.total_solds() << " " 
-        << sd.sales_revenue() << " " << sd.avg_price();
+ostream &print(ostream &os, const Sales_data &item) {
+    os << item.get_bookNo() << " " << item.get_units_sold() << " " 
+        << item.get_revenue() << " " << item.avg_price() << endl;
     return os;
 }
 
 
-istream &read(istream &is, Sales_data &sd) {
+istream &read(istream &is, Sales_data &item) {
+    string bookNo;
+    unsigned units_sold;
     double price = 0; //书本单价
-    is >> sd.bookNo >> sd.units_sold >> price;
-    sd.revenue = price * sd.units_sold;
+    cout << "请依次输入书本编号，总销售量以及书本单价:" << endl;
+    is >> bookNo >> units_sold >> price;
+    item.set_bookNo(bookNo);
+    item.set_units_sold(units_sold);
+    item.set_revenue(price * units_sold);
     return is;
 }
+
+Sales_data::Sales_data(istream &is) {
+    read(is, *this);
+}
+
 
